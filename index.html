@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="한국 정신문화의 수도 경상북도 안동시 관광 종합 안내 사이트. 하회마을, 월영교, 도산서원, 봉정사 등 다양한 유적지와 안동찜닭 등 맛집 코스 안내.">
+    <title>안동 관광 포털 - 한국 정신문화의 수도 | ANDONG TOURISM</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sticky Header & Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-emblem">
+                    <svg viewBox="0 0 100 100" class="traditional-pattern">
+                        <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" class="hexagon"/>
+                        <path d="M50,15 L75,30 L50,45 L25,30 Z" class="roof-line"/>
+                        <path d="M50,45 L50,85" class="center-pillar"/>
+                        <path d="M35,65 C35,65 42,75 50,75 C58,75 65,65 65,65" class="wave-pattern"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">ANDONG</span>
+                    <span class="brand-sub">한국 정신문화의 수도</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="메뉴 열기">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link">안동 소개</a>
+                <a href="#map" class="nav-link">인터랙티브 지도</a>
+                <a href="#explore" class="nav-link">관광 명소</a>
+                <a href="#gastronomy" class="nav-link">안동의 맛</a>
+                <a href="#planner" class="nav-link">일정 플래너</a>
+                <a href="#masks" class="nav-link">하회탈 체험</a>
+                <a href="#tips" class="nav-link">여행 정보</a>
+            </nav>
+
+            <!-- Utilities (Language, Theme Toggle) -->
+            <div class="header-utils">
+                <div class="lang-selector">
+                    <button class="lang-btn" id="lang-btn">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>KO</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <a href="#" class="active">한국어 (KO)</a>
+                        <a href="#" onclick="alert('English version is now loading... / 영문 번역본 준비 중')">English (EN)</a>
+                        <a href="#" onclick="alert('日本語サービス準備中 / 일어 번역본 준비 중')">日本語 (JA)</a>
+                        <a href="#" onclick="alert('中文服务准备中 / 중문 번역본 준비 중')">简体中文 (ZH)</a>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="다크 모드 전환">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg" style="background-image: url('images/hahoe_hero.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="badge-gold animate-fade-in">WELCOME TO GYEONGSANGBUK-DO</div>
+            <h1 class="hero-title animate-slide-up">한국의 영혼을 발견하다</h1>
+            <p class="hero-subtitle animate-slide-up-delay">천년의 역사, 살아 숨 쉬는 전통, 그리고 깊은 정신문화가 조화를 이루는 고장 안동으로 시간 여행을 떠나보세요.</p>
+            
+            <!-- Global Search Bar -->
+            <div class="hero-search-container animate-slide-up-delay-more">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="global-search" placeholder="하회마을, 안동찜닭, 버스 시간표 등을 검색해 보세요...">
+                <button class="search-btn" id="global-search-btn">검색</button>
+            </div>
+            
+            <!-- Live Status & Weather Widget -->
+            <div class="live-status-widget animate-fade-in-delayed">
+                <div class="status-item">
+                    <span class="status-label"><i class="fa-solid fa-clock"></i> 현재 시간</span>
+                    <span class="status-value" id="current-time">오전 11:00</span>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-item">
+                    <span class="status-label"><i class="fa-solid fa-cloud-sun"></i> 실시간 날씨</span>
+                    <span class="status-value" id="weather-temp">24°C / 맑음</span>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-item">
+                    <span class="status-label"><i class="fa-solid fa-shirt"></i> 옷차림 가이드</span>
+                    <span class="status-value" id="clothing-tip">가벼운 옷차림과 선글라스</span>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-item refresh-item" id="weather-refresh" title="실시간 날씨 갱신">
+                    <i class="fa-solid fa-rotate"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <a href="#about" class="scroll-down-indicator">
+            <span>안동 둘러보기</span>
+            <i class="fa-solid fa-chevron-down animate-bounce"></i>
+        </a>
+    </section>
+
+    <!-- About Andong Section -->
+    <section class="about-section" id="about">
+        <div class="section-container">
+            <div class="grid-2col">
+                <div class="about-text-content">
+                    <span class="section-tag">정신문화의 고장</span>
+                    <h2 class="section-title">전통문화의 보존고, 안동</h2>
+                    <p class="section-desc">이천 년 역사의 숨결을 간직한 안동은 한국 유교 문화와 서원, 유서 깊은 고택과 전통 하회탈의 고장입니다. 이곳에서의 역사는 박물관에 박제되어 있지 않고, 오늘날 안동 사람들의 따뜻한 삶과 공동체 속에서 고스란히 살아 숨 쉬고 있습니다.</p>
+                    
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-num">2</span>
+                            <span class="stat-txt">유네스코 세계문화유산</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">800+년</span>
+                            <span class="stat-txt">하회별신굿탈놀이 역사</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">1.9시간</span>
+                            <span class="stat-txt">서울 출발 KTX-이음 소요시간</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual-content">
+                    <div class="about-image-wrapper">
+                        <img src="images/hahoe_mask.png" alt="전통 하회탈 (양반탈)" class="about-main-img">
+                        <div class="about-image-overlay-card">
+                            <i class="fa-solid fa-quote-left"></i>
+                            <p>“안동에서는 오랜 세월 묵혀온 한국의 미소가 투박한 나무탈을 통해 방문객을 따뜻하게 맞이합니다.”</p>
+                            <strong>하회세계탈박물관</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive SVG Map Section -->
+    <section class="map-section" id="map">
+        <div class="section-container">
+            <div class="center-title">
+                <span class="section-tag">인터랙티브 가이드</span>
+                <h2 class="section-title">안동 랜드마크 지도 탐색</h2>
+                <p class="section-subtitle">안동시 주요 명소를 클릭하면 각 랜드마크의 상세 정보와 교통 팁을 볼 수 있으며, 일정 플래너에 바로 추가할 수 있습니다.</p>
+            </div>
+            
+            <div class="map-explorer-layout">
+                <!-- SVG Interactive Map Board -->
+                <div class="map-board-container">
+                    <div class="map-badge">실시간 인터랙티브 지도</div>
+                    <svg viewBox="0 0 800 500" class="andong-svg-map" id="andong-svg-map">
+                        <!-- Simulated topography lines & Nakdong river pathways -->
+                        <path d="M 50,450 Q 200,430 350,300 T 550,250 T 800,200" fill="none" class="river-path" stroke-width="12"/>
+                        <path d="M 50,450 Q 200,430 350,300 T 550,250 T 800,200" fill="none" class="river-path-inner" stroke-width="4"/>
+                        
+                        <!-- Topography contours (background styling) -->
+                        <path d="M 50,150 Q 150,50 300,100 T 600,80 T 750,150" fill="none" class="contour-line" stroke-dasharray="5 5"/>
+                        <path d="M 100,380 Q 250,300 400,400 T 700,350" fill="none" class="contour-line" stroke-dasharray="5 5"/>
+                        
+                        <!-- Map Hotspots -->
+                        <!-- 1. Bongjeongsa (North-West) -->
+                        <g class="map-marker" data-target="bongjeongsa" transform="translate(250, 120)">
+                            <circle r="25" class="marker-pulse" />
+                            <circle r="12" class="marker-pin" />
+                            <text y="-20" class="marker-label">봉정사</text>
+                        </g>
+
+                        <!-- 2. Hahoe Folk Village (West-South) -->
+                        <g class="map-marker" data-target="hahoe" transform="translate(180, 310)">
+                            <circle r="25" class="marker-pulse" />
+                            <circle r="12" class="marker-pin" />
+                            <text y="-20" class="marker-label">하회마을</text>
+                        </g>
+
+                        <!-- 3. Downtown & Station (Center-South) -->
+                        <g class="map-marker active" data-target="downtown" transform="translate(420, 320)">
+                            <circle r="25" class="marker-pulse" />
+                            <circle r="12" class="marker-pin" />
+                            <text y="-20" class="marker-label">안동 시내 (구시장)</text>
+                        </g>
+
+                        <!-- 4. Woryeonggyo Bridge (East) -->
+                        <g class="map-marker" data-target="woryeonggyo" transform="translate(560, 270)">
+                            <circle r="25" class="marker-pulse" />
+                            <circle r="12" class="marker-pin" />
+                            <text y="-20" class="marker-label">월영교</text>
+                        </g>
+
+                        <!-- 5. Dosanseowon Confucian Academy (North-East) -->
+                        <g class="map-marker" data-target="dosanseowon" transform="translate(620, 130)">
+                            <circle r="25" class="marker-pulse" />
+                            <circle r="12" class="marker-pin" />
+                            <text y="-20" class="marker-label">도산서원</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <!-- Dynamic Map Details Panel -->
+                <div class="map-details-card" id="map-details-card">
+                    <div class="card-image-wrap">
+                        <img src="" id="map-detail-img" alt="랜드마크 이미지">
+                        <span class="landmark-tag" id="map-detail-tag">세계문화유산</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 id="map-detail-title">안동 시내 (구시장)</h3>
+                        <p class="landmark-rating"><i class="fa-solid fa-star text-gold"></i> <span id="map-detail-rating">4.5</span> (로컬 허브)</p>
+                        <p class="landmark-desc" id="map-detail-desc">안동의 맛과 대중교통의 중심지. 안동찜닭 골목과 전통시장, 안동 갈비골목 등이 밀집해 있으며 안동역과 편리하게 연결됩니다.</p>
+                        
+                        <div class="landmark-info-grid">
+                            <div class="info-cell">
+                                <i class="fa-solid fa-bus text-primary"></i>
+                                <span>KTX 안동역 기준</span>
+                                <strong id="map-detail-transit">시내버스로 15분</strong>
+                            </div>
+                            <div class="info-cell">
+                                <i class="fa-solid fa-ticket text-primary"></i>
+                                <span>입장료</span>
+                                <strong id="map-detail-fee">무료</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <button class="btn btn-primary btn-block" id="map-add-itinerary">
+                                <i class="fa-solid fa-calendar-plus"></i> 일정 플래너에 추가
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attraction Explorer Section -->
+    <section class="explore-section" id="explore">
+        <div class="section-container">
+            <div class="center-title">
+                <span class="section-tag">추천 코스</span>
+                <h2 class="section-title">관광 명소 탐색</h2>
+                <p class="section-subtitle">안동의 역사 깊은 사찰, 서원부터 자연 경관과 현대적 문화지까지 카테고리별로 둘러보세요.</p>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="filter-wrapper">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">전체 명소</button>
+                    <button class="filter-tab" data-filter="heritage">세계문화유산</button>
+                    <button class="filter-tab" data-filter="nature">자연 & 명소</button>
+                    <button class="filter-tab" data-filter="culture">문화 & 맛집</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="attraction-search" placeholder="이름으로 검색...">
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+            </div>
+
+            <!-- Attractions Grid -->
+            <div class="attractions-grid" id="attractions-grid">
+                <!-- Dynamically filled with JS attraction cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gastronomy & Local Food Section -->
+    <section class="gastronomy-section" id="gastronomy">
+        <div class="section-container">
+            <div class="grid-2col align-center">
+                <div class="gastronomy-visual">
+                    <div class="food-collage">
+                        <div class="food-main-card">
+                            <div class="food-img-holder">
+                                <img src="https://images.unsplash.com/photo-1628294895520-22c67f08bf8c?q=80&w=800&auto=format&fit=crop" alt="김이 모락모락 피어오르는 매콤달콤 안동찜닭">
+                            </div>
+                            <div class="food-floating-info">
+                                <h4>안동찜닭 골목</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> 안동 구시장 내 위치</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gastronomy-content">
+                    <span class="section-tag">안동의 전통 맛</span>
+                    <h2 class="section-title">음식 문화: 맛의 고장 안동</h2>
+                    <p class="section-desc">안동의 고즈넉한 지리적 특징과 종가 문화는 보존성 높은 간식과 예절 깊은 제사 음식을 독특하게 발전시켰습니다. 안동에서 맛보아야 할 대포적인 별미를 만나보세요.</p>
+                    
+                    <!-- Culinary List Accordions -->
+                    <div class="food-menu-list">
+                        <!-- Food Item 1 -->
+                        <div class="food-item active" data-food="jjimdak">
+                            <div class="food-header">
+                                <span class="food-name">안동찜닭</span>
+                                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                            </div>
+                            <div class="food-detail">
+                                <p>짭조름하면서도 달콤하고, 청양고추의 칼칼함이 어우러진 간장 베이스의 닭조림 요리입니다. 풍성한 당면과 아삭한 감자, 채소가 어우러져 한국인은 물론 전 세계 관광객의 입맛을 사로잡았습니다.</p>
+                                <strong>추천 맛집 구역:</strong> 안동 구시장 찜닭골목 (시내 중심)
+                            </div>
+                        </div>
+                        
+                        <!-- Food Item 2 -->
+                        <div class="food-item" data-food="heotjesabap">
+                            <div class="food-header">
+                                <span class="food-name">헛제사밥</span>
+                                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                            </div>
+                            <div class="food-detail">
+                                <p>제사를 지내지 않고도 제사음식처럼 갖가지 나물과 전을 올려 비벼 먹는 안동만의 정갈한 비빔밥입니다. 고추장 대신 집간장으로 슴슴하게 비벼내어 재료 고유의 깊은 풍미를 느낄 수 있습니다.</p>
+                                <strong>추천 맛집 구역:</strong> 월영교 인근 헛제사밥 전문 식당가
+                            </div>
+                        </div>
+
+                        <!-- Food Item 3 -->
+                        <div class="food-item" data-food="mackerel">
+                            <div class="food-header">
+                                <span class="food-name">안동 간고등어</span>
+                                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                            </div>
+                            <div class="food-detail">
+                                <p>바다와 먼 안동 내륙까지 고등어를 운반하기 위해 소금으로 절이는 오랜 보존 방식에서 발전한 요리입니다. 특유의 짭조름하고 기름진 살코기가 숯불이나 그릴에 구워져 밥도둑으로 꼽힙니다.</p>
+                                <strong>추천 맛집 구역:</strong> 안동역 인근 및 하회마을 주변 전통 한식당
+                            </div>
+                        </div>
+
+                        <!-- Food Item 4 -->
+                        <div class="food-item" data-food="soju">
+                            <div class="food-header">
+                                <span class="food-name">안동소주</span>
+                                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                            </div>
+                            <div class="food-detail">
+                                <p>고려 시대부터 전해 내려온 정통 증류식 전통주입니다. 맑은 천연 암반수와 누룩으로 빚어 빚어낸 순수 쌀 소주로 독도(보통 45도)에 비해 뒷맛이 깔끔하고 은은한 향이 감도는 명주입니다.</p>
+                                <strong>추천 체험 구역:</strong> 안동소주 전통 박물관 및 시내 전통 특산품점
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary Planner Section -->
+    <section class="planner-section" id="planner">
+        <div class="section-container">
+            <div class="center-title">
+                <span class="section-tag">일정 설계</span>
+                <h2 class="section-title">나만의 여행 일정 플래너</h2>
+                <p class="section-subtitle">위 명소 목록의 "일정 플래너에 추가" 버튼을 눌러 정렬하세요. 대략적인 소요시간 및 경비를 실시간 계산하고 출력할 수 있습니다.</p>
+            </div>
+            
+            <div class="planner-layout">
+                <!-- Planner Controller/Timeline -->
+                <div class="planner-timeline-panel">
+                    <div class="planner-days-tabs">
+                        <button class="day-tab active" data-day="1">1일차 일정표</button>
+                        <button class="day-tab" data-day="2">2일차 일정표</button>
+                    </div>
+                    
+                    <!-- Dynamic Timeline Container -->
+                    <div class="timeline-container" id="timeline-container">
+                        <div class="empty-timeline-message" id="empty-timeline-msg">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <p>일정표가 비어 있습니다. 지도 또는 상단의 명소 카드에서 랜드마크를 추가하여 여행 계획을 세워보세요!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Planner Summary & Print Panel -->
+                <div class="planner-summary-panel">
+                    <h3 class="panel-title">여행 일정 요약</h3>
+                    
+                    <div class="summary-card">
+                        <div class="summary-metric">
+                            <span class="metric-label">총 방문지 수</span>
+                            <span class="metric-val" id="summary-stops-count">0개</span>
+                        </div>
+                        <div class="summary-metric">
+                            <span class="metric-label">예상 입장 요금</span>
+                            <span class="metric-val" id="summary-admission-cost">₩0</span>
+                        </div>
+                        <div class="summary-metric">
+                            <span class="metric-label">추정 교통 경비 (버스/택시)</span>
+                            <span class="metric-val" id="summary-travel-cost">₩0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="planner-recommendations">
+                        <h4><i class="fa-solid fa-lightbulb text-gold"></i> 안동 여행 가이드 팁:</h4>
+                        <div class="tip-body" id="planner-smart-tip">
+                            선택하신 관광지에 알맞은 대중교통 노선 및 최적 동선 정보를 실시간으로 이곳에 추천해 드립니다.
+                        </div>
+                    </div>
+                    
+                    <div class="panel-actions">
+                        <button class="btn btn-secondary btn-block" id="clear-planner-btn">
+                            <i class="fa-solid fa-trash-can"></i> 전체 비우기
+                        </button>
+                        <button class="btn btn-accent btn-block" id="print-planner-btn">
+                            <i class="fa-solid fa-print"></i> 일정표 출력 및 PDF 저장
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hahoe Mask Experience Section -->
+    <section class="masks-section" id="masks">
+        <div class="section-container">
+            <div class="center-title">
+                <span class="section-tag">전통문화 체험</span>
+                <h2 class="section-title">하회탈 인터랙티브 체험</h2>
+                <p class="section-subtitle">한국 전통 하회탈 카드를 선택하여 각 탈이 담고 있는 성격, 신분적 특징, 그리고 해학의 의미를 배우고 춤사위를 재현해 보세요.</p>
+            </div>
+            
+            <div class="masks-layout">
+                <!-- Mask Cards Row -->
+                <div class="masks-selection-grid">
+                    <!-- Mask 1: Yangban -->
+                    <div class="mask-selector-card active" data-mask="yangban">
+                        <div class="mask-avatar">
+                            <div class="mask-svg-avatar yangban-avatar">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="#e5c19d" stroke="#5d4037" stroke-width="3"/>
+                                    <path d="M25,35 Q35,25 45,35" stroke="#3e2723" stroke-width="4" fill="none"/>
+                                    <path d="M75,35 Q65,25 55,35" stroke="#3e2723" stroke-width="4" fill="none"/>
+                                    <path d="M22,45 C28,52 42,52 48,45" stroke="#3e2723" stroke-width="3" fill="none"/>
+                                    <path d="M78,45 C72,52 58,52 52,45" stroke="#3e2723" stroke-width="3" fill="none"/>
+                                    <path d="M30,65 Q50,85 70,65 Z" fill="#3e2723" stroke="#3e2723" stroke-width="2"/>
+                                    <circle cx="28" cy="55" r="5" fill="#d84315" opacity="0.6"/>
+                                    <circle cx="72" cy="55" r="5" fill="#d84315" opacity="0.6"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="mask-selector-name">양반탈 (Nobleman)</span>
+                    </div>
+                    
+                    <!-- Mask 2: Bune -->
+                    <div class="mask-selector-card" data-mask="bune">
+                        <div class="mask-avatar">
+                            <div class="mask-svg-avatar bune-avatar">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="#fbe9e7" stroke="#880e4f" stroke-width="3"/>
+                                    <path d="M25,33 Q35,20 45,35" stroke="#111" stroke-width="3" fill="none"/>
+                                    <path d="M75,33 Q65,20 55,35" stroke="#111" stroke-width="3" fill="none"/>
+                                    <line x1="22" y1="42" x2="44" y2="44" stroke="#111" stroke-width="3.5"/>
+                                    <line x1="78" y1="42" x2="56" y2="44" stroke="#111" stroke-width="3.5"/>
+                                    <path d="M42,65 Q50,70 58,65" stroke="#d50000" stroke-width="4" fill="none"/>
+                                    <circle cx="30" cy="52" r="4" fill="#d50000"/>
+                                    <circle cx="70" cy="52" r="4" fill="#d50000"/>
+                                    <circle cx="50" cy="28" r="3.5" fill="#d50000"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="mask-selector-name">부네탈 (Damsel)</span>
+                    </div>
+
+                    <!-- Mask 3: Kaksi -->
+                    <div class="mask-selector-card" data-mask="kaksi">
+                        <div class="mask-avatar">
+                            <div class="mask-svg-avatar kaksi-avatar">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="#faf0e6" stroke="#2e3d52" stroke-width="3"/>
+                                    <path d="M12,28 C20,10 80,10 88,28" stroke="#111" stroke-width="7" fill="none"/>
+                                    <line x1="24" y1="44" x2="42" y2="44" stroke="#111" stroke-width="3"/>
+                                    <line x1="76" y1="44" x2="58" y2="44" stroke="#111" stroke-width="3"/>
+                                    <circle cx="50" cy="66" r="5" fill="#c62828"/>
+                                    <circle cx="32" cy="55" r="5" fill="#c62828"/>
+                                    <circle cx="68" cy="55" r="5" fill="#c62828"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="mask-selector-name">각시탈 (Bride)</span>
+                    </div>
+
+                    <!-- Mask 4: Choraengi -->
+                    <div class="mask-selector-card" data-mask="choraengi">
+                        <div class="mask-avatar">
+                            <div class="mask-svg-avatar choraengi-avatar">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="#cfd8dc" stroke="#37474f" stroke-width="3"/>
+                                    <path d="M22,30 L44,40" stroke="#111" stroke-width="4"/>
+                                    <path d="M78,30 L56,40" stroke="#111" stroke-width="4"/>
+                                    <circle cx="33" cy="50" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+                                    <circle cx="33" cy="50" r="4" fill="#000"/>
+                                    <circle cx="67" cy="50" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+                                    <circle cx="67" cy="50" r="4" fill="#000"/>
+                                    <rect x="35" y="66" width="30" height="10" rx="3" fill="#fff" stroke="#111" stroke-width="2"/>
+                                    <line x1="45" y1="66" x2="45" y2="76" stroke="#111"/>
+                                    <line x1="50" y1="66" x2="50" y2="76" stroke="#111"/>
+                                    <line x1="55" y1="66" x2="55" y2="76" stroke="#111"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="mask-selector-name">초랭이탈 (Servant)</span>
+                    </div>
+                </div>
+                
+                <!-- Focus Showcase Window -->
+                <div class="mask-showcase-panel">
+                    <div class="mask-3d-stage">
+                        <div class="mask-visual-container" id="mask-interactive-visual">
+                            <img src="images/hahoe_mask.png" alt="하회탈 크게보기" class="mask-interactive-img" id="mask-showcase-img">
+                        </div>
+                        <button class="mask-dance-btn" id="mask-dance-btn"><i class="fa-solid fa-play"></i> 춤사위 재현</button>
+                    </div>
+                    
+                    <div class="mask-text-info">
+                        <div class="mask-badge-info" id="mask-status-badge">지배계층 / 양반</div>
+                        <h3 class="mask-info-title" id="mask-info-title">양반탈 (Nobleman)</h3>
+                        <p class="mask-quote" id="mask-info-quote">“하하하! 내가 이 고을의 양반이로다! 내 권세와 학식을 감히 누가 넘보겠느냐!”</p>
+                        
+                        <div class="mask-details-list">
+                            <div class="mask-detail-row">
+                                <strong>마당극에서의 역할:</strong>
+                                <span id="mask-role">겉으로는 학식과 예법이 뛰어나며 엄격한 체하지만, 지독하게 오만하고 탐욕스러우며 하인들에게 풍자와 조롱을 당하는 희극적 대상입니다.</span>
+                            </div>
+                            <div class="mask-detail-row">
+                                <strong>상징하는 바:</strong>
+                                <span id="mask-symbol">조선 시대 지배 계층(양반)의 위선과 무능에 대한 날카로운 풍자와 서민들의 해방감.</span>
+                            </div>
+                            <div class="mask-detail-row">
+                                <strong>특징적 묘사:</strong>
+                                <span id="mask-feature">턱이 분리되어 끈으로 매여 있습니다. 배우가 고개를 뒤로 젖히면 입이 쩍 벌어지며 파안대소하고, 숙이면 엄숙하고 험상궂은 표정으로 일그러집니다.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mask-action-area">
+                            <button class="btn btn-primary" id="mask-sound-btn">
+                                <i class="fa-solid fa-volume-high"></i> 풍물놀이 (자진모리) 장단 듣기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Travel Tips & FAQ Section -->
+    <section class="tips-section" id="tips">
+        <div class="section-container">
+            <div class="grid-2col">
+                <!-- Travel Info Grid -->
+                <div class="travel-guides-panel">
+                    <span class="section-tag">실용 정보</span>
+                    <h2 class="section-title">유용한 여행 가이드</h2>
+                    <p class="section-desc">안동을 보다 쉽고 편안하게 여행하기 위한 대중교통 노선과 숙소 가이드입니다.</p>
+                    
+                    <div class="info-accordion">
+                        <div class="accordion-item active">
+                            <div class="accordion-header">
+                                <span><i class="fa-solid fa-train text-primary"></i> 서울에서 안동까지 열차편</span>
+                                <i class="fa-solid fa-plus icon-plus"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>서울 청량리역에서 고속열차 **KTX-이음**을 타면 안동역까지 약 **1시간 50분**만에 쾌적하게 직통 이동할 수 있습니다. 요금은 편도 약 25,000원 선이며, 주말 여행이나 축제 기간에는 매진 속도가 빠르므로 1~2주 전에 코레일톡 앱을 통해 예매하시길 권장합니다.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span><i class="fa-solid fa-bus-simple text-primary"></i> 시내버스 노선 및 이용 방법</span>
+                                <i class="fa-solid fa-plus icon-plus"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>안동 주요 유적지는 시내버스로 잘 연결되어 있습니다. 안동역/터미널에서 **하회마을**까지는 **210번 시내버스**(약 45분 소요), **봉정사**까지는 **351번 버스**를 타면 됩니다. 교통카드를 태그할 수 있습니다. 단, 배차 간격이 다소 길므로 시간표 확인이 필수적입니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span><i class="fa-solid fa-taxi text-primary"></i> 외국인 친화형 관광택시 활용</span>
+                                <i class="fa-solid fa-plus icon-plus"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>안동을 효율적으로 돌고 싶다면 **관광택시 정찰제 대여** 서비스가 좋습니다. 3시간에 50,000원, 5시간에 80,000원의 고정비로 운전 기사님이 원하는 곳까지 편하게 탑승 안내하며 대기해 주십니다. 안동역 종합관광안내소에서 상세한 이용 예약을 안내합니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span><i class="fa-solid fa-hotel text-primary"></i> 추천 숙박 스타일</span>
+                                <i class="fa-solid fa-plus icon-plus"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>안동 전통의 운치를 제대로 만끽하려면 하회마을 내부의 전통 고택이나 수려한 댐 주변의 지례예술촌 등에서 **한옥 스테이(Hanok Stay)**를 해 보시길 권장합니다. 요와 이불을 까는 바닥 난방형 온돌방이 기본입니다. 현대식 편의를 위하신다면 시내 주변 모텔이나 안동 문화관광단지 내 리조트를 이용하세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Help / Help desk -->
+                <div class="tips-sidebar">
+                    <div class="help-desk-card">
+                        <h3><i class="fa-solid fa-circle-question"></i> 위급 상황 대처법</h3>
+                        <p>안동을 여행하시는 동안 위급 및 상담 처리를 위해 아래 비상용 다이얼 번호를 기억해 두세요.</p>
+                        
+                        <div class="contact-line">
+                            <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                            <div class="contact-details">
+                                <strong>1330</strong>
+                                <span>한국 관광 안내 전화 (24시간 무휴, 다국어 지원)</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-line">
+                            <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="contact-details">
+                                <strong>112</strong>
+                                <span>경찰청 범죄 및 치안 신고 전화</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-line">
+                            <div class="icon-circle"><i class="fa-solid fa-kit-medical"></i></div>
+                            <div class="contact-details">
+                                <strong>119</strong>
+                                <span>소방 및 응급 구급 구조 이송 요청</span>
+                            </div>
+                        </div>
+
+                        <div class="useful-links-box">
+                            <h4>유관 기관 공식 링크</h4>
+                            <a href="https://www.andong.go.kr/tour/main.do" target="_blank" class="resource-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 안동시 문화관광 포털 공식 사이트</a>
+                            <a href="https://korean.visitkorea.or.kr" target="_blank" class="resource-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 대한민국 구석구석 (한국관광공사)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Print/Printable view -->
+    <div class="itinerary-print-modal" id="print-modal">
+        <div class="print-modal-content">
+            <div class="print-header">
+                <h2>안동 맞춤형 여행 일정표</h2>
+                <button class="close-print-btn" id="close-print-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="print-body" id="print-modal-body">
+                <!-- Populated via JS with print layout styling -->
+            </div>
+            <div class="print-footer">
+                <button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> 일정표 출력 / PDF로 저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>ANDONG TOURISM PORTAL</h3>
+                    <p>한국의 소중한 정신적 문화 유산을 지키며 자연과 함께 호흡하는 도시, 안동입니다. 역사, 풍류, 전통을 몸소 체험해 보세요.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>콘텐츠 바로가기</h4>
+                    <ul>
+                        <li><a href="#about">안동 소개</a></li>
+                        <li><a href="#map">인터랙티브 지도</a></li>
+                        <li><a href="#explore">전체 관광 명소</a></li>
+                        <li><a href="#planner">일정 플래너</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>주요 명소 바로가기</h4>
+                    <ul>
+                        <li><a href="#explore" onclick="document.querySelector('[data-filter=\'heritage\']').click()">하회마을 (세계유산)</a></li>
+                        <li><a href="#explore">월영교 (야경 명소)</a></li>
+                        <li><a href="#explore">도산서원 (유교 학술)</a></li>
+                        <li><a href="#explore">봉정사 (최고 천년 고찰)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>관광 소식지 알림</h4>
+                    <p>철별 페스티벌 일정, KTX 특별 할인권, 신규 한옥 카페 명소 업데이트를 이메일로 받아보세요.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('안동 뉴스레터 구독을 신청해 주셔서 대단히 감사합나다!'); this.reset();">
+                        <input type="email" placeholder="이메일 주소를 입력하세요" required>
+                        <button type="submit" aria-label="구독 신청"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 안동시 관광 종합 안내 사이트. 모든 권리 보유. (Preparation for Global Visitors)</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="페이스북"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="인스타그램"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="유튜브"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="트립어드바이저"><i class="fa-brands fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
